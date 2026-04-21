@@ -5,7 +5,12 @@ import {
   ChartNoAxesCombined,
   KanbanSquare,
   Radar,
+  ShieldCheck,
   Sparkles,
+  Swords,
+  TrendingUp,
+  Trophy,
+  Users,
   Workflow,
   Zap,
 } from "lucide-react";
@@ -29,6 +34,7 @@ export default function LandingPage() {
         <ProductSection />
         <PersonaSection />
         <HowItWorksSection />
+        <CompetitiveSection />
         <TestimonialsCarousel />
         <CtaSection />
       </main>
@@ -365,6 +371,145 @@ function HowItWorksSection() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CompetitiveSection() {
+  const stats = [
+    {
+      icon: TrendingUp,
+      value: "$127B",
+      label: "TAM in 2026",
+    },
+    {
+      icon: Users,
+      value: "218",
+      label: "vendors fighting for it",
+    },
+    {
+      icon: Swords,
+      value: "11",
+      label: "tools per rep, on average",
+    },
+  ];
+
+  const advantages = [
+    {
+      icon: ShieldCheck,
+      title: "shadcn as foundation",
+      description:
+        "A production-ready design system, not a template. Accessible, themeable, yours.",
+    },
+    {
+      icon: Zap,
+      title: "Weeks, not quarters",
+      description:
+        "From scoping to a live demo in roughly six weeks. Your reps try it while competitors are still wireframing.",
+    },
+    {
+      icon: Trophy,
+      title: "Calibrated to your ICP",
+      description:
+        "Scoring, stages, and dashboards tuned to how you actually sell — in week one.",
+    },
+  ];
+
+  return (
+    <section id="competitive" className="relative border-b border-border/60">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-gradient-to-b from-primary/10 via-transparent to-transparent"
+        aria-hidden
+      />
+      <div className="mx-auto w-full max-w-7xl px-6 py-20">
+        <div className="mb-10 flex flex-col items-start gap-3">
+          <Badge variant="outline" className="gap-1.5 text-xs">
+            <Swords className="size-3 text-accent" />
+            Market reality check
+          </Badge>
+          <h2 className="max-w-3xl text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+            B2B sales is the most competitive SaaS niche. That&apos;s exactly
+            why we built one.
+          </h2>
+        </div>
+
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+          <div className="flex flex-col gap-5 text-sm leading-relaxed text-muted-foreground md:text-base">
+            <p>
+              Sales tooling is a{" "}
+              <span className="font-medium text-foreground">$127B market</span>{" "}
+              with 200+ live vendors and new AI-native entrants launching every
+              month. The median sales rep already juggles 11 tools. Every
+              incumbent has a copilot. Every category gets reinvented every four
+              years.
+            </p>
+            <p>
+              We don&apos;t win by shipping another generic CRM. Alpina
+              Tech&apos;s playbook is{" "}
+              <span className="font-medium text-foreground">
+                shadcn as the foundation, weeks not quarters to ship,
+              </span>{" "}
+              and a surface calibrated to your exact ICP. Depth beats feature
+              count — always has.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <Link
+                href="/app/market"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80"
+              >
+                See the competitive landscape
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <span className="text-xs text-muted-foreground">
+                (opens the in-demo Market Intelligence report)
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-3 gap-3">
+              {stats.map((s, i) => (
+                <Reveal key={s.label} delay={i * 0.08}>
+                  <div className="relative overflow-hidden rounded-xl border border-border/60 bg-card p-4">
+                    <div
+                      className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-primary/15 to-transparent opacity-60"
+                      aria-hidden
+                    />
+                    <div className="relative flex flex-col gap-1.5">
+                      <s.icon className="size-4 text-accent" />
+                      <div className="text-2xl font-semibold tracking-tight md:text-3xl">
+                        {s.value}
+                      </div>
+                      <div className="text-[11px] leading-tight text-muted-foreground">
+                        {s.label}
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <div className="grid gap-3">
+              {advantages.map((a, i) => (
+                <Reveal key={a.title} delay={0.24 + i * 0.06}>
+                  <div className="flex items-start gap-3 rounded-xl border border-border/60 bg-card p-4">
+                    <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
+                      <a.icon className="size-4" />
+                    </span>
+                    <div>
+                      <div className="text-sm font-medium tracking-tight">
+                        {a.title}
+                      </div>
+                      <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+                        {a.description}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </div>

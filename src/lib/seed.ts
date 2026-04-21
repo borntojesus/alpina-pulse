@@ -1,15 +1,25 @@
 import { faker } from "@faker-js/faker";
 import { calculateScore } from "./scoring";
 import { avatarUrl } from "./utils";
+import {
+  generateCalls,
+  generateConversations,
+  generateSequences,
+  generateSignals,
+} from "./seed-intel";
 import type {
   Activity,
+  CallRecording,
   CompanySize,
+  Conversation,
   Deal,
   DealStage,
   Industry,
   Lead,
   LeadStatus,
   Rep,
+  Sequence,
+  Signal,
   Source,
 } from "./types";
 
@@ -206,7 +216,15 @@ function dealStageFromStatus(status: LeadStatus): DealStage | null {
   ]);
 }
 
-export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
+export function generateSeed(): {
+  leads: Lead[];
+  deals: Deal[];
+  reps: Rep[];
+  conversations: Conversation[];
+  calls: CallRecording[];
+  signals: Signal[];
+  sequences: Sequence[];
+} {
   faker.seed(20260421);
 
   const repsBase: Omit<Rep, "avatar">[] = [
@@ -397,5 +415,10 @@ export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
     }
   }
 
-  return { leads, deals, reps };
+  const conversations = generateConversations(leads, reps);
+  const calls = generateCalls(leads, reps);
+  const signals = generateSignals(leads);
+  const sequences = generateSequences(reps);
+
+  return { leads, deals, reps, conversations, calls, signals, sequences };
 }

@@ -121,6 +121,64 @@ const HELP: Record<string, Help> = {
     whyItMatters:
       "Scoring decays. Reviewing quality monthly keeps SDRs focused on leads that actually close.",
   },
+  "/app/conversations": {
+    title: "Conversations",
+    description:
+      "Every message across email, LinkedIn, WhatsApp, Telegram and SMS in one inbox. Reply where the prospect is.",
+    whoItsFor: ["SDR", "Manager"],
+    dataSources: [
+      "Email integrations (Gmail/O365)",
+      "LinkedIn Sales Nav",
+      "WhatsApp Business",
+      "Telegram bot",
+      "Twilio SMS",
+    ],
+    whyItMatters:
+      "Reps lose deals between tools. One thread, every channel — the reason buyers reply.",
+  },
+  "/app/calls": {
+    title: "Call library",
+    description:
+      "Every recorded call with AI-generated transcript, sentiment, talk-ratio, and key moments. Coach from tape.",
+    whoItsFor: ["Manager"],
+    dataSources: [
+      "Zoom / Google Meet / Teams",
+      "Conversation intelligence engine",
+    ],
+    whyItMatters:
+      "Gong/Chorus own this category. We ship the same surface tuned to your methodology — MEDDIC, SPICED, whatever you run.",
+  },
+  "/app/signals": {
+    title: "Buying signals",
+    description:
+      "Intent feed: website visits, pricing-page dwell, competitor research, LinkedIn engagement. Who's ready now?",
+    whoItsFor: ["SDR", "Manager"],
+    dataSources: [
+      "First-party website analytics",
+      "6sense/Clearbit/Bombora intent",
+      "Email engagement",
+    ],
+    whyItMatters:
+      "The difference between a cold list and a warm list. Act in the first two hours or you lose the moment.",
+  },
+  "/app/sequences": {
+    title: "Sequences",
+    description:
+      "Outreach cadences with step-level performance. Which step converts — and which kills the thread?",
+    whoItsFor: ["SDR", "Manager"],
+    dataSources: ["Cadence engine", "Email send logs", "Reply detection"],
+    whyItMatters:
+      "The gap between 2% and 8% reply rate is the difference between missing and beating quota.",
+  },
+  "/app/market": {
+    title: "Market intelligence",
+    description:
+      "B2B sales tooling is the most competitive SaaS niche. This page proves it with data — and shows the wedge.",
+    whoItsFor: ["Manager", "Exec"],
+    dataSources: ["Internal competitive research", "G2/Gartner/Forrester"],
+    whyItMatters:
+      "Shipping into a crowded category is only hard if you don't know the map. This view is the map.",
+  },
   "/app/settings": {
     title: "Settings",
     description: "Switch roles, reset the demo, replay tours, toggle theme.",

@@ -7,15 +7,19 @@ import { calculateScore } from "./scoring";
 import { avatarUrl } from "./utils";
 import type {
   Activity,
+  CallRecording,
+  Conversation,
   Deal,
   DealStage,
   Lead,
   LeadStatus,
   Rep,
   Role,
+  Sequence,
+  Signal,
 } from "./types";
 
-const SEED_VERSION = 2;
+const SEED_VERSION = 3;
 
 type State = {
   seedVersion: number;
@@ -24,6 +28,10 @@ type State = {
   leads: Lead[];
   deals: Deal[];
   reps: Rep[];
+  conversations: Conversation[];
+  calls: CallRecording[];
+  signals: Signal[];
+  sequences: Sequence[];
   lastSubmittedLeadId: string | null;
 };
 
@@ -62,6 +70,10 @@ function freshState(): Omit<State, "role" | "hasSeenWelcome"> {
     leads: seed.leads,
     deals: seed.deals,
     reps: seed.reps,
+    conversations: seed.conversations,
+    calls: seed.calls,
+    signals: seed.signals,
+    sequences: seed.sequences,
     lastSubmittedLeadId: null,
   };
 }
@@ -279,6 +291,10 @@ export const usePulseStore = create<State & Actions>()(
         leads: s.leads,
         deals: s.deals,
         reps: s.reps,
+        conversations: s.conversations,
+        calls: s.calls,
+        signals: s.signals,
+        sequences: s.sequences,
         lastSubmittedLeadId: s.lastSubmittedLeadId,
       }),
       onRehydrateStorage: () => (state) => {

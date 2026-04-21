@@ -14,6 +14,7 @@ import { KpiCard } from "@/components/app/kpi-card";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ScoreBadge } from "@/components/app/score-badge";
 import { PersonAvatar } from "@/components/app/person-avatar";
+import { IntelSnapshotCard } from "@/components/app/dashboard/intel-snapshot";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -82,6 +83,8 @@ export function SdrDashboard({
           tone="positive"
         />
       </div>
+
+      <IntelSnapshotCard />
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-2">

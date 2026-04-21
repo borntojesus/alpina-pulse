@@ -9,14 +9,20 @@ import {
   ChartNoAxesCombined,
   DollarSign,
   FolderKanban,
+  Globe2,
   HelpCircle,
   Inbox,
   KanbanSquare,
   LayoutDashboard,
+  MessageSquare,
   Menu,
   PanelRightOpen,
+  PhoneCall,
   Plus,
+  Radar,
+  Repeat,
   Settings2,
+  Swords,
   Target,
   TrendingUp,
   Users,
@@ -58,6 +64,36 @@ const NAV_MAIN: NavItem[] = [
     label: "Pipeline",
     icon: KanbanSquare,
     matches: (p) => p.startsWith("/app/pipeline"),
+  },
+];
+
+const NAV_INTEL: NavItem[] = [
+  {
+    href: "/app/conversations",
+    label: "Conversations",
+    icon: MessageSquare,
+    matches: (p) => p.startsWith("/app/conversations"),
+  },
+  {
+    href: "/app/calls",
+    label: "Call library",
+    icon: PhoneCall,
+    matches: (p) => p.startsWith("/app/calls"),
+  },
+  {
+    href: "/app/signals",
+    label: "Signals",
+    icon: Radar,
+  },
+  {
+    href: "/app/sequences",
+    label: "Sequences",
+    icon: Repeat,
+  },
+  {
+    href: "/app/market",
+    label: "Market intel",
+    icon: Swords,
   },
 ];
 
@@ -184,6 +220,11 @@ function SidebarInner() {
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-6 px-3 py-5" data-tour="sidebar">
         <NavSection title="Workspace" items={NAV_MAIN} pathname={pathname} />
+        <NavSection
+          title="Intelligence"
+          items={NAV_INTEL}
+          pathname={pathname}
+        />
         <NavSection title="Reports" items={NAV_REPORTS} pathname={pathname} />
         <NavSection title="" items={NAV_SETTINGS} pathname={pathname} />
         <div className="mt-auto rounded-lg border border-border/60 bg-card p-3 text-xs text-muted-foreground">
