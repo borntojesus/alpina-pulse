@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -12,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MarketingHeader } from "@/components/marketing/header";
 import { Logo } from "@/components/logo";
+import { AlpinaTechMark } from "@/components/alpina-tech-mark";
 
 export default function LandingPage() {
   return (
@@ -28,22 +30,20 @@ export default function LandingPage() {
       </main>
 
       <footer className="border-t border-border/60 bg-background">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-8 text-xs text-muted-foreground">
-          <div className="flex items-center gap-2">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-4 px-6 py-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
+          <div className="flex items-center gap-2.5">
             <Logo className="size-5" />
-            <span>
-              Alpina Pulse — a demo by{" "}
-              <a
-                href="https://alpina.tech"
-                className="text-foreground hover:underline"
-              >
-                Alpina Tech
-              </a>
-            </span>
+            <span>Alpina Pulse — a demo by</span>
+            <a
+              href="https://alpina-tech.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center"
+            >
+              <AlpinaTechMark height={18} />
+            </a>
           </div>
-          <span>
-            © {new Date().getFullYear()} — Built for client showcases.
-          </span>
+          <span>© 2026 — Built for client showcases.</span>
         </div>
       </footer>
     </div>
@@ -52,13 +52,25 @@ export default function LandingPage() {
 
 function HeroSection() {
   return (
-    <section className="relative isolate border-b border-border/60">
-      <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
+    <section className="relative isolate overflow-hidden border-b border-border/60">
+      <Image
+        src="/marketing/hero-flow.png"
+        alt=""
+        aria-hidden
+        fill
+        priority
+        sizes="100vw"
+        className="pointer-events-none absolute inset-0 -z-20 object-cover opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_80%)]"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 grid-bg opacity-25"
+        aria-hidden
+      />
       <div
         className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-br from-primary/40 via-accent/30 to-transparent blur-3xl"
         aria-hidden
       />
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-10 px-6 py-20 md:py-28">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 px-6 py-20 md:py-28">
         <Badge variant="outline" className="gap-2 py-1 pr-3 pl-2 text-xs">
           <Sparkles className="size-3 text-accent" />
           Live demo · no sign-up required
@@ -296,23 +308,48 @@ function HowItWorksSection() {
             The demo plays itself. You follow along.
           </h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {steps.map((s) => (
+        <div className="grid items-stretch gap-8 lg:grid-cols-[1.05fr_1fr]">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border/60 bg-card">
+            <Image
+              src="/marketing/pipeline-flow.png"
+              alt="Pipeline stages illustration"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
             <div
-              key={s.n}
-              className="rounded-xl border border-border/60 bg-card p-6"
-            >
-              <span className="font-mono text-xs text-muted-foreground">
-                {s.n}
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/70 via-transparent to-transparent"
+              aria-hidden
+            />
+            <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between text-xs text-muted-foreground">
+              <span className="rounded-md bg-background/60 px-2 py-1 backdrop-blur">
+                Five stages · drag to move
               </span>
-              <h3 className="mt-2 text-lg font-medium tracking-tight">
-                {s.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {s.description}
-              </p>
+              <span className="hidden rounded-md bg-background/60 px-2 py-1 backdrop-blur sm:inline">
+                Activity logs every move
+              </span>
             </div>
-          ))}
+          </div>
+          <div className="flex flex-col gap-4">
+            {steps.map((s) => (
+              <div
+                key={s.n}
+                className="flex items-start gap-4 rounded-xl border border-border/60 bg-card p-5"
+              >
+                <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 font-mono text-xs text-primary">
+                  {s.n}
+                </span>
+                <div>
+                  <h3 className="text-base font-medium tracking-tight">
+                    {s.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    {s.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -9,6 +9,7 @@ import { PageHeader } from "@/components/app/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RoleSwitcher } from "@/components/app/role-switcher";
+import { LeadSplitterCard } from "@/components/app/settings/lead-splitter-card";
 import { useTheme } from "next-themes";
 
 export function SettingsClient() {
@@ -116,6 +117,8 @@ export function SettingsClient() {
             </div>
           </CardContent>
         </Card>
+
+        <LeadSplitterCard />
 
         <Card className="md:col-span-2">
           <CardHeader>
