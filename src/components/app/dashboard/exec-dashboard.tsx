@@ -12,6 +12,7 @@ import {
 } from "@/lib/selectors";
 import { KpiCard } from "@/components/app/kpi-card";
 import { IntelSnapshotCard } from "@/components/app/dashboard/intel-snapshot";
+import { TodayActivityStream } from "@/components/app/dashboard/today-activity-stream";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -80,6 +81,8 @@ export function ExecDashboard({
       </div>
 
       <IntelSnapshotCard />
+
+      <TodayActivityStream />
 
       <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <Card>

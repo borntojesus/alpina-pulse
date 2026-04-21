@@ -121,6 +121,24 @@ const HELP: Record<string, Help> = {
     whyItMatters:
       "Scoring decays. Reviewing quality monthly keeps SDRs focused on leads that actually close.",
   },
+  "/app/accounts": {
+    title: "Accounts",
+    description:
+      "Every company rolled up — leads, deals, conversations, calls, signals — the way an enterprise AE actually looks at a book of business.",
+    whoItsFor: ["Manager", "Exec", "AE"],
+    dataSources: ["CRM", "Conversation intelligence", "Intent data"],
+    whyItMatters:
+      "Deals close per account, not per lead. Stop thinking in rows — start thinking in logos.",
+  },
+  "/app/reports/win-loss": {
+    title: "Win / Loss analysis",
+    description:
+      "Why we win, why we lose — broken down by source, industry, rep, and deal size.",
+    whoItsFor: ["Manager", "Exec"],
+    dataSources: ["Closed-won / closed-lost deals", "Lost-reason taggings"],
+    whyItMatters:
+      "If pricing is the top lost reason, that's a packaging decision, not a sales coaching one. This view tells you which.",
+  },
   "/app/conversations": {
     title: "Conversations",
     description:

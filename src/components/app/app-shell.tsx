@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BarChart3,
+  Building2,
   CalendarCheck,
   ChartNoAxesCombined,
   DollarSign,
@@ -21,6 +22,7 @@ import {
   Plus,
   Radar,
   Repeat,
+  Scale,
   Settings2,
   Swords,
   Target,
@@ -64,6 +66,12 @@ const NAV_MAIN: NavItem[] = [
     label: "Pipeline",
     icon: KanbanSquare,
     matches: (p) => p.startsWith("/app/pipeline"),
+  },
+  {
+    href: "/app/accounts",
+    label: "Accounts",
+    icon: Building2,
+    matches: (p) => p.startsWith("/app/accounts"),
   },
 ];
 
@@ -138,6 +146,11 @@ const NAV_REPORTS: NavItem[] = [
     href: "/app/reports/quality",
     label: "Lead quality",
     icon: BarChart3,
+  },
+  {
+    href: "/app/reports/win-loss",
+    label: "Win / Loss",
+    icon: Scale,
   },
 ];
 

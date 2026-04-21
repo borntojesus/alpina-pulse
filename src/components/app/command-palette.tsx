@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   BarChart3,
+  Building2,
   CalendarCheck,
   ChartNoAxesCombined,
   Crown,
@@ -21,6 +22,7 @@ import {
   Radar,
   RefreshCw,
   Repeat,
+  Scale,
   Settings2,
   Sparkles,
   Swords,
@@ -60,6 +62,7 @@ const NAV: {
     icon: KanbanSquare,
     hint: "G → P",
   },
+  { label: "Accounts", href: "/app/accounts", icon: Building2, hint: "G → A" },
   {
     label: "Conversations",
     href: "/app/conversations",
@@ -102,6 +105,7 @@ const REPORTS: {
   { label: "Source attribution", href: "/app/reports/sources", icon: Target },
   { label: "Rep performance", href: "/app/reports/team", icon: Users },
   { label: "Lead quality", href: "/app/reports/quality", icon: BarChart3 },
+  { label: "Win / Loss analysis", href: "/app/reports/win-loss", icon: Scale },
 ];
 
 const ROLES: {

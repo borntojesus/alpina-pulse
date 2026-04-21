@@ -5,6 +5,7 @@ import { persist } from "zustand/middleware";
 import { generateSeed } from "./seed";
 import { calculateScore } from "./scoring";
 import { avatarUrl } from "./utils";
+import { logoForCompany, portraitForSeed } from "./real-images";
 import type {
   Activity,
   CallRecording,
@@ -19,7 +20,7 @@ import type {
   Signal,
 } from "./types";
 
-const SEED_VERSION = 3;
+const SEED_VERSION = 4;
 
 type State = {
   seedVersion: number;
@@ -124,7 +125,8 @@ export const usePulseStore = create<State & Actions>()(
           createdAt,
           firstName: input.firstName,
           lastName: input.lastName,
-          avatar: avatarUrl(`${input.firstName} ${input.lastName}`, "lead"),
+          avatar: portraitForSeed(`${input.firstName} ${input.lastName}-${id}`),
+          companyLogo: logoForCompany(input.company),
           email: input.email,
           company: input.company,
           companySize: input.companySize,

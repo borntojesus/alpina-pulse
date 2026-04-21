@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { calculateScore } from "./scoring";
 import { avatarUrl } from "./utils";
+import { logoForCompany, portraitForSeed, REP_PORTRAITS } from "./real-images";
 import {
   generateCalls,
   generateConversations,
@@ -273,7 +274,7 @@ export function generateSeed(): {
   ];
   const reps: Rep[] = repsBase.map((r) => ({
     ...r,
-    avatar: avatarUrl(r.name, "rep"),
+    avatar: REP_PORTRAITS[r.id] ?? avatarUrl(r.name, "rep"),
   }));
 
   const now = new Date("2026-04-21T12:00:00Z");
@@ -328,7 +329,8 @@ export function generateSeed(): {
       createdAt: createdAt.toISOString(),
       firstName,
       lastName,
-      avatar: avatarUrl(`${firstName} ${lastName}`, "lead"),
+      avatar: portraitForSeed(`${firstName} ${lastName}-${i}`),
+      companyLogo: logoForCompany(company),
       email: faker.internet
         .email({
           firstName,

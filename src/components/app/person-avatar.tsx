@@ -17,7 +17,13 @@ export function PersonAvatar({
       className={cn("border border-border/60 bg-muted", className)}
       style={{ width: size, height: size }}
     >
-      {src ? <AvatarImage src={src} alt={name} /> : null}
+      {src ? (
+        <AvatarImage
+          src={src}
+          alt={name}
+          className="object-cover [object-position:50%_28%]"
+        />
+      ) : null}
       <AvatarFallback className="text-[10px]">{initials(name)}</AvatarFallback>
     </Avatar>
   );

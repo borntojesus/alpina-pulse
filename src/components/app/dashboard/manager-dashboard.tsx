@@ -17,6 +17,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { PersonAvatar } from "@/components/app/person-avatar";
 import { IntelSnapshotCard } from "@/components/app/dashboard/intel-snapshot";
+import { RepCoachingCard } from "@/components/app/dashboard/rep-coaching-card";
+import { TodayActivityStream } from "@/components/app/dashboard/today-activity-stream";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PipelineStageChart } from "@/components/charts/pipeline-stage-chart";
@@ -90,6 +92,11 @@ export function ManagerDashboard({
       </div>
 
       <IntelSnapshotCard />
+
+      <div className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
+        <RepCoachingCard />
+        <TodayActivityStream />
+      </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-2">

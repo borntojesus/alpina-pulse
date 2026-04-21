@@ -9,6 +9,7 @@ import { useHydrated } from "@/lib/use-hydrated";
 import { PageHeader } from "@/components/app/page-header";
 import { ScoreBadge } from "@/components/app/score-badge";
 import { PersonAvatar } from "@/components/app/person-avatar";
+import { CompanyLogo } from "@/components/app/company-logo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -292,9 +293,18 @@ function LeadRow({
         </Link>
       </TableCell>
       <TableCell>
-        <div className="text-sm">{lead.company}</div>
-        <div className="text-xs text-muted-foreground">
-          {lead.industry} · {lead.companySize}
+        <div className="flex items-center gap-2">
+          <CompanyLogo
+            src={lead.companyLogo}
+            company={lead.company}
+            size={28}
+          />
+          <div className="min-w-0">
+            <div className="truncate text-sm">{lead.company}</div>
+            <div className="text-xs text-muted-foreground">
+              {lead.industry} · {lead.companySize}
+            </div>
+          </div>
         </div>
       </TableCell>
       <TableCell>

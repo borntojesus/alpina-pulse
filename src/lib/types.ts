@@ -69,6 +69,7 @@ export type Lead = {
   avatar: string;
   email: string;
   company: string;
+  companyLogo: string;
   companySize: CompanySize;
   industry: Industry;
   country: string;
