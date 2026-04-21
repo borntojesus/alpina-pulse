@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alpina Pulse — Lead intelligence for B2B sales teams",
+  title: "Alpina CRM — Sales intelligence for B2B teams",
   description:
-    "See how a B2B lead gets from form to forecast. A demo by Alpina Tech showcasing sales intelligence, pipeline, and revenue dashboards.",
+    "See how a B2B lead gets from form to forecast. A demo by Alpina Tech showcasing CRM, lead scoring, pipeline, and revenue dashboards.",
   metadataBase: new URL("https://alpina-pulse.vercel.app"),
   openGraph: {
-    title: "Alpina Pulse",
-    description: "Lead intelligence for B2B sales teams.",
+    title: "Alpina CRM — by Alpina Tech",
+    description: "Sales intelligence for B2B teams.",
     type: "website",
   },
 };

@@ -13,6 +13,7 @@ import {
 import { KpiCard } from "@/components/app/kpi-card";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ScoreBadge } from "@/components/app/score-badge";
+import { PersonAvatar } from "@/components/app/person-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -97,6 +98,11 @@ export function SdrDashboard({
                 href={`/app/leads/${l.id}`}
                 className="flex items-center gap-3 rounded-lg border border-transparent p-2 transition-colors hover:border-border hover:bg-muted/40"
               >
+                <PersonAvatar
+                  name={`${l.firstName} ${l.lastName}`}
+                  src={l.avatar}
+                  size={32}
+                />
                 <ScoreBadge score={l.score} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">

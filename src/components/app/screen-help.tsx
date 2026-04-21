@@ -50,7 +50,43 @@ const HELP: Record<string, Help> = {
     whyItMatters:
       "Your pipeline is only as real as the latest stage change. Keeping it fresh is what makes forecasts honest.",
   },
-  "/app/analytics/sources": {
+  "/app/reports": {
+    title: "Reports hub",
+    description:
+      "Every report ships with one hypothesis and one takeaway. Pick the view by role, cadence, or the question you're answering.",
+    whoItsFor: ["Manager", "Exec", "SDR (lite)"],
+    dataSources: ["CRM deals", "Activity logs", "Scoring engine"],
+    whyItMatters:
+      "Information Architecture — stakeholders don't want dashboards, they want answers. Each report answers exactly one question.",
+  },
+  "/app/reports/pipeline-health": {
+    title: "Pipeline health",
+    description:
+      "Stage velocity, deal-age histogram, funnel conversion. Answers: is our pipeline breathing or stalling?",
+    whoItsFor: ["Manager", "Exec"],
+    dataSources: ["Deals × updatedAt", "Stage transitions"],
+    whyItMatters:
+      "Stuck deals are the silent killer of forecast accuracy. Surface them before end-of-quarter.",
+  },
+  "/app/reports/activity": {
+    title: "Team activity",
+    description:
+      "Heatmap of touches by day and hour + per-rep activity mix. Answers: who's doing the work that produces pipeline?",
+    whoItsFor: ["Manager"],
+    dataSources: ["Activity logs from CRM + calling tools"],
+    whyItMatters:
+      "Activity without outcome = busy work. Activity-to-outcome ratio is what separates coachable reps from false signal.",
+  },
+  "/app/reports/revenue-scorecard": {
+    title: "Revenue scorecard",
+    description:
+      "QTD attainment vs target, top accounts, at-risk deals, and coverage. Exec single-pane.",
+    whoItsFor: ["Exec"],
+    dataSources: ["Closed-won", "Weighted pipeline", "Targets"],
+    whyItMatters:
+      "The view you pull up on Monday and screenshot for the board Friday.",
+  },
+  "/app/reports/sources": {
     title: "Source attribution",
     description:
       "Where leads come from, what they cost, and what they convert to.",
@@ -59,7 +95,7 @@ const HELP: Record<string, Help> = {
     whyItMatters:
       "Marketing should spend where ROI is best. This tells you which channels to double down on and which to cut.",
   },
-  "/app/analytics/team": {
+  "/app/reports/team": {
     title: "Team performance",
     description:
       "Leaderboard + individual quota progress. Spot coaching opportunities.",
@@ -68,7 +104,7 @@ const HELP: Record<string, Help> = {
     whyItMatters:
       "You can't coach what you can't see. This view surfaces who's thriving and who needs help.",
   },
-  "/app/analytics/forecast": {
+  "/app/reports/forecast": {
     title: "Forecast",
     description: "Weighted pipeline with best / commit / worst scenarios.",
     whoItsFor: ["Manager", "Exec"],
@@ -76,7 +112,7 @@ const HELP: Record<string, Help> = {
     whyItMatters:
       "Quarter close is won or lost on forecast honesty. This is the view to bring to board meetings.",
   },
-  "/app/analytics/quality": {
+  "/app/reports/quality": {
     title: "Lead quality",
     description:
       "Score distribution and conversion by bucket. Is our scoring calibrated?",

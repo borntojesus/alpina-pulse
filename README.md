@@ -1,4 +1,4 @@
-# Alpina Pulse
+# Alpina CRM
 
 > Lead intelligence for B2B sales teams — a client-facing demo by [Alpina Tech](https://alpina.tech).
 

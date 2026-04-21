@@ -15,7 +15,7 @@ import {
 import { KpiCard } from "@/components/app/kpi-card";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { PersonAvatar } from "@/components/app/person-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PipelineStageChart } from "@/components/charts/pipeline-stage-chart";
@@ -120,14 +120,11 @@ export function ManagerDashboard({
               return (
                 <div key={row.rep.id} className="flex flex-col gap-2">
                   <div className="flex items-center gap-3">
-                    <Avatar className="size-8">
-                      <AvatarFallback>
-                        {row.rep.name
-                          .split(" ")
-                          .map((p) => p[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
+                    <PersonAvatar
+                      name={row.rep.name}
+                      src={row.rep.avatar}
+                      size={32}
+                    />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <span className="truncate text-sm font-medium">

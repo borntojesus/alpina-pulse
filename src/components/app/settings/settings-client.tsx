@@ -128,9 +128,9 @@ export function SettingsClient() {
           </CardHeader>
           <CardContent className="flex flex-col gap-3 text-sm text-muted-foreground">
             <p>
-              Alpina Pulse is a client-facing showcase of what Alpina Tech
-              builds for B2B sales teams — inbox, scoring, pipeline, and
-              dashboards. No backend, no sign-up, no data leaves your browser.
+              Alpina CRM is a client-facing showcase of what Alpina Tech builds
+              for B2B sales teams — inbox, scoring, pipeline, and dashboards. No
+              backend, no sign-up, no data leaves your browser.
             </p>
             <p>
               Your version would include: real CRM integration, custom scoring

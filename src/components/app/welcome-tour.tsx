@@ -36,9 +36,9 @@ type Step = {
 const STEPS: Step[] = [
   {
     badge: "Welcome",
-    title: "This is Alpina Pulse",
+    title: "This is Alpina CRM",
     description:
-      "A demo by Alpina Tech showing what we build for B2B sales teams — inbox, scoring, pipeline, and dashboards. Nothing is simulated; you'll use it like your team would.",
+      "A demo by Alpina Tech showing what we build for B2B sales teams — inbox, scoring, pipeline, and revenue dashboards. Nothing is simulated; you'll use it like your team would.",
     icon: Sparkles,
   },
   {

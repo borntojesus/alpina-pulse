@@ -14,6 +14,26 @@
     }
   ],
   "redirects": [
-    { "source": "/app", "destination": "/app/dashboard", "permanent": false }
+    { "source": "/app", "destination": "/app/dashboard", "permanent": false },
+    {
+      "source": "/app/analytics/sources",
+      "destination": "/app/reports/sources",
+      "permanent": true
+    },
+    {
+      "source": "/app/analytics/team",
+      "destination": "/app/reports/team",
+      "permanent": true
+    },
+    {
+      "source": "/app/analytics/forecast",
+      "destination": "/app/reports/forecast",
+      "permanent": true
+    },
+    {
+      "source": "/app/analytics/quality",
+      "destination": "/app/reports/quality",
+      "permanent": true
+    }
   ]
 }

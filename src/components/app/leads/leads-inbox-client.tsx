@@ -8,6 +8,7 @@ import { usePulseStore } from "@/lib/store";
 import { useHydrated } from "@/lib/use-hydrated";
 import { PageHeader } from "@/components/app/page-header";
 import { ScoreBadge } from "@/components/app/score-badge";
+import { PersonAvatar } from "@/components/app/person-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -203,11 +204,30 @@ export function LeadsInboxClient() {
                 ))}
                 {filtered.length === 0 ? (
                   <TableRow>
-                    <TableCell
-                      colSpan={7}
-                      className="h-32 text-center text-sm text-muted-foreground"
-                    >
-                      No leads match your filters. Try clearing one.
+                    <TableCell colSpan={7} className="py-12">
+                      <div className="mx-auto flex max-w-sm flex-col items-center gap-3 text-center">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src="/marketing/empty-state.png"
+                          alt=""
+                          aria-hidden
+                          className="size-32 rounded-xl object-cover opacity-80"
+                        />
+                        <div className="text-sm font-medium">
+                          No leads match your filters
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Try clearing a filter — or submit a test lead from{" "}
+                          <Link
+                            href="/contact"
+                            target="_blank"
+                            className="underline underline-offset-2 hover:text-foreground"
+                          >
+                            /contact
+                          </Link>{" "}
+                          and watch it land here.
+                        </p>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ) : null}
@@ -250,18 +270,25 @@ function LeadRow({
       <TableCell>
         <Link
           href={`/app/leads/${lead.id}`}
-          className="flex flex-col gap-0.5 group-hover:text-primary"
+          className="flex items-center gap-3 group-hover:text-primary"
         >
-          <span className="flex items-center gap-1.5 text-sm font-medium">
-            {lead.firstName} {lead.lastName}
-            {lead.tags.includes("highlight") ? (
-              <Badge variant="accent" className="gap-1 text-[10px]">
-                <Flame className="size-3" />
-                Your lead
-              </Badge>
-            ) : null}
-          </span>
-          <span className="text-xs text-muted-foreground">{lead.email}</span>
+          <PersonAvatar
+            name={`${lead.firstName} ${lead.lastName}`}
+            src={lead.avatar}
+            size={32}
+          />
+          <div className="flex flex-col gap-0.5">
+            <span className="flex items-center gap-1.5 text-sm font-medium">
+              {lead.firstName} {lead.lastName}
+              {lead.tags.includes("highlight") ? (
+                <Badge variant="accent" className="gap-1 text-[10px]">
+                  <Flame className="size-3" />
+                  Your lead
+                </Badge>
+              ) : null}
+            </span>
+            <span className="text-xs text-muted-foreground">{lead.email}</span>
+          </div>
         </Link>
       </TableCell>
       <TableCell>

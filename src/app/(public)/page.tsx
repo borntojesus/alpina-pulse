@@ -33,9 +33,9 @@ export default function LandingPage() {
         <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-4 px-6 py-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <div className="flex items-center gap-2.5">
             <Logo className="size-5" />
-            <span>Alpina Pulse — a demo by</span>
+            <span>Alpina CRM — a demo by</span>
             <a
-              href="https://alpina-tech.com"
+              href="https://alpina-tech.com/shadcn-development/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center"
@@ -82,7 +82,7 @@ function HeroSection() {
           </span>
         </h1>
         <p className="max-w-2xl text-balance text-center text-base leading-relaxed text-muted-foreground md:text-lg">
-          See how a B2B lead gets from form to forecast. Alpina Pulse shows what
+          See how a B2B lead gets from form to forecast. Alpina CRM shows what
           we build for revenue teams — inbox, scoring, pipeline, and dashboards
           that actually get used.
         </p>

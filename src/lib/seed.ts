@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { calculateScore } from "./scoring";
+import { avatarUrl } from "./utils";
 import type {
   Activity,
   CompanySize,
@@ -208,11 +209,10 @@ function dealStageFromStatus(status: LeadStatus): DealStage | null {
 export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
   faker.seed(20260421);
 
-  const reps: Rep[] = [
+  const repsBase: Omit<Rep, "avatar">[] = [
     {
       id: "rep-1",
       name: "Ava Morales",
-      avatar: "",
       role: "SDR",
       quotaQuarter: 80,
       achievedQuarter: 62,
@@ -220,7 +220,6 @@ export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
     {
       id: "rep-2",
       name: "Diego Park",
-      avatar: "",
       role: "SDR",
       quotaQuarter: 80,
       achievedQuarter: 71,
@@ -228,7 +227,6 @@ export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
     {
       id: "rep-3",
       name: "Priya Shah",
-      avatar: "",
       role: "AE",
       quotaQuarter: 250000,
       achievedQuarter: 188000,
@@ -236,7 +234,6 @@ export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
     {
       id: "rep-4",
       name: "Mateo Ricci",
-      avatar: "",
       role: "AE",
       quotaQuarter: 250000,
       achievedQuarter: 224500,
@@ -244,7 +241,6 @@ export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
     {
       id: "rep-5",
       name: "Sara Lindqvist",
-      avatar: "",
       role: "AE",
       quotaQuarter: 250000,
       achievedQuarter: 162300,
@@ -252,12 +248,15 @@ export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
     {
       id: "rep-6",
       name: "Kenji Tanaka",
-      avatar: "",
       role: "Manager",
       quotaQuarter: 750000,
       achievedQuarter: 574800,
     },
   ];
+  const reps: Rep[] = repsBase.map((r) => ({
+    ...r,
+    avatar: avatarUrl(r.name, "rep"),
+  }));
 
   const now = new Date("2026-04-21T12:00:00Z");
   const leads: Lead[] = [];
@@ -311,6 +310,7 @@ export function generateSeed(): { leads: Lead[]; deals: Deal[]; reps: Rep[] } {
       createdAt: createdAt.toISOString(),
       firstName,
       lastName,
+      avatar: avatarUrl(`${firstName} ${lastName}`, "lead"),
       email: faker.internet
         .email({
           firstName,

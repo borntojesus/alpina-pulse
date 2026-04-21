@@ -27,6 +27,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { ScoreBadge } from "@/components/app/score-badge";
+import { PersonAvatar } from "@/components/app/person-avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -256,6 +257,11 @@ export function LeadDetailClient({ id }: { id: string }) {
         <div className="flex flex-col gap-6">
           <Card>
             <CardContent className="flex items-center gap-4 pt-6">
+              <PersonAvatar
+                name={`${lead.firstName} ${lead.lastName}`}
+                src={lead.avatar}
+                size={56}
+              />
               <ScoreBadge score={lead.score} size="lg" />
               <div className="flex-1">
                 <div className="text-xs uppercase tracking-wider text-muted-foreground">

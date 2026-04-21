@@ -66,6 +66,7 @@ export type Lead = {
   createdAt: string;
   firstName: string;
   lastName: string;
+  avatar: string;
   email: string;
   company: string;
   companySize: CompanySize;

@@ -24,9 +24,10 @@ import { PageHeader } from "@/components/app/page-header";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScoreBadge } from "@/components/app/score-badge";
+import { PersonAvatar } from "@/components/app/person-avatar";
 import { cn } from "@/lib/utils";
 import { DEAL_STAGES, STAGE_LABEL, formatCurrency } from "@/lib/selectors";
-import type { Deal, DealStage, Lead } from "@/lib/types";
+import type { Deal, DealStage, Lead, Rep } from "@/lib/types";
 
 const STAGE_ACCENT: Record<DealStage, string> = {
   discovery: "from-[color:var(--chart-1)]/40",
@@ -40,6 +41,7 @@ export function PipelineBoardClient() {
   const hydrated = useHydrated();
   const deals = usePulseStore((s) => s.deals);
   const leads = usePulseStore((s) => s.leads);
+  const reps = usePulseStore((s) => s.reps);
   const moveDealStage = usePulseStore((s) => s.moveDealStage);
 
   const sensors = useSensors(
@@ -53,6 +55,10 @@ export function PipelineBoardClient() {
   const [activeDealId, setActiveDealId] = React.useState<string | null>(null);
   const activeDeal = deals.find((d) => d.id === activeDealId) ?? null;
 
+  const repMap = React.useMemo(
+    () => new Map(reps.map((r) => [r.id, r])),
+    [reps],
+  );
   const leadMap = React.useMemo(
     () => new Map(leads.map((l) => [l.id, l])),
     [leads],
@@ -110,6 +116,7 @@ export function PipelineBoardClient() {
                 stage={s}
                 deals={byStage[s]}
                 leadMap={leadMap}
+                repMap={repMap}
               />
             ))}
           </div>
@@ -118,6 +125,7 @@ export function PipelineBoardClient() {
               <DealCardBody
                 deal={activeDeal}
                 lead={leadMap.get(activeDeal.leadId)}
+                owner={repMap.get(activeDeal.ownerId)}
                 dragging
               />
             ) : null}
@@ -132,10 +140,12 @@ function StageColumn({
   stage,
   deals,
   leadMap,
+  repMap,
 }: {
   stage: DealStage;
   deals: Deal[];
   leadMap: Map<string, Lead>;
+  repMap: Map<string, Rep>;
 }) {
   const { setNodeRef, isOver } = useDroppable({ id: stage });
   const total = deals.reduce((a, d) => a + d.value, 0);
@@ -179,6 +189,7 @@ function StageColumn({
               key={d.id}
               deal={d}
               lead={leadMap.get(d.leadId)}
+              owner={repMap.get(d.ownerId)}
             />
           ))
         )}
@@ -187,7 +198,15 @@ function StageColumn({
   );
 }
 
-function DraggableDealCard({ deal, lead }: { deal: Deal; lead?: Lead }) {
+function DraggableDealCard({
+  deal,
+  lead,
+  owner,
+}: {
+  deal: Deal;
+  lead?: Lead;
+  owner?: Rep;
+}) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: deal.id,
   });
@@ -202,7 +221,7 @@ function DraggableDealCard({ deal, lead }: { deal: Deal; lead?: Lead }) {
         isDragging && "opacity-40",
       )}
     >
-      <DealCardBody deal={deal} lead={lead} />
+      <DealCardBody deal={deal} lead={lead} owner={owner} />
     </div>
   );
 }
@@ -210,10 +229,12 @@ function DraggableDealCard({ deal, lead }: { deal: Deal; lead?: Lead }) {
 function DealCardBody({
   deal,
   lead,
+  owner,
   dragging,
 }: {
   deal: Deal;
   lead?: Lead;
+  owner?: Rep;
   dragging?: boolean;
 }) {
   return (
@@ -233,26 +254,40 @@ function DealCardBody({
         <span className="tabular-nums">{deal.probability}%</span>
       </div>
       <div className="text-sm font-medium leading-tight">{deal.name}</div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2 text-xs text-muted-foreground">
           {lead ? (
-            <ScoreBadge score={lead.score} />
+            <PersonAvatar
+              name={`${lead.firstName} ${lead.lastName}`}
+              src={lead.avatar}
+              size={28}
+            />
           ) : (
-            <span className="size-8" />
+            <span className="size-7" />
           )}
           {lead ? (
             <div className="min-w-0">
-              <div className="truncate text-sm">{lead.company}</div>
-              <div className="text-[11px]">{lead.industry}</div>
+              <div className="flex items-center gap-1.5">
+                <ScoreBadge score={lead.score} size="sm" />
+                <span className="truncate text-sm text-foreground">
+                  {lead.company}
+                </span>
+              </div>
+              <div className="mt-0.5 truncate text-[11px]">{lead.industry}</div>
             </div>
           ) : null}
         </div>
-        <div className="text-right">
+        <div className="flex shrink-0 flex-col items-end gap-1">
           <div className="text-sm font-semibold tabular-nums">
             {formatCurrency(deal.value)}
           </div>
-          <div className="text-[10px] text-muted-foreground">
-            close {format(new Date(deal.expectedCloseDate), "MMM d")}
+          <div className="flex items-center gap-1">
+            <div className="text-[10px] text-muted-foreground">
+              {format(new Date(deal.expectedCloseDate), "MMM d")}
+            </div>
+            {owner ? (
+              <PersonAvatar name={owner.name} src={owner.avatar} size={18} />
+            ) : null}
           </div>
         </div>
       </div>

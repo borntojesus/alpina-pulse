@@ -17,7 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { PersonAvatar } from "@/components/app/person-avatar";
 import type { Lead, Rep } from "@/lib/types";
 
 type Bucket = {
@@ -210,14 +210,11 @@ export function LeadSplitterCard() {
                 </div>
                 <ArrowRight className="size-3.5 text-muted-foreground" />
                 <div className="flex items-center gap-2">
-                  <Avatar className="size-7">
-                    <AvatarFallback className="text-[10px]">
-                      {row.rep.name
-                        .split(" ")
-                        .map((p) => p[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
+                  <PersonAvatar
+                    name={row.rep.name}
+                    src={row.rep.avatar}
+                    size={28}
+                  />
                   <div className="text-right">
                     <div className="text-sm font-medium">{row.rep.name}</div>
                     <div className="text-[10px] text-muted-foreground">

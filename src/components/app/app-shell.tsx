@@ -5,7 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BarChart3,
+  CalendarCheck,
   ChartNoAxesCombined,
+  DollarSign,
+  FolderKanban,
   HelpCircle,
   Inbox,
   KanbanSquare,
@@ -15,6 +18,7 @@ import {
   Plus,
   Settings2,
   Target,
+  TrendingUp,
   Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -54,24 +58,45 @@ const NAV_MAIN: NavItem[] = [
   },
 ];
 
-const NAV_ANALYTICS: NavItem[] = [
+const NAV_REPORTS: NavItem[] = [
   {
-    href: "/app/analytics/sources",
-    label: "Sources",
-    icon: Target,
+    href: "/app/reports",
+    label: "All reports",
+    icon: FolderKanban,
+    matches: (p) => p === "/app/reports",
   },
   {
-    href: "/app/analytics/team",
-    label: "Team",
-    icon: Users,
+    href: "/app/reports/pipeline-health",
+    label: "Pipeline health",
+    icon: TrendingUp,
   },
   {
-    href: "/app/analytics/forecast",
+    href: "/app/reports/activity",
+    label: "Team activity",
+    icon: CalendarCheck,
+  },
+  {
+    href: "/app/reports/revenue-scorecard",
+    label: "Revenue scorecard",
+    icon: DollarSign,
+  },
+  {
+    href: "/app/reports/forecast",
     label: "Forecast",
     icon: ChartNoAxesCombined,
   },
   {
-    href: "/app/analytics/quality",
+    href: "/app/reports/sources",
+    label: "Source attribution",
+    icon: Target,
+  },
+  {
+    href: "/app/reports/team",
+    label: "Rep performance",
+    icon: Users,
+  },
+  {
+    href: "/app/reports/quality",
     label: "Lead quality",
     icon: BarChart3,
   },
@@ -117,9 +142,7 @@ function TopBar() {
 
       <Link href="/app/dashboard" className="flex items-center gap-2">
         <Logo className="size-6" />
-        <span className="text-sm font-semibold tracking-tight">
-          Alpina Pulse
-        </span>
+        <span className="text-sm font-semibold tracking-tight">Alpina CRM</span>
       </Link>
 
       <div
@@ -155,11 +178,7 @@ function SidebarInner() {
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-6 px-3 py-5" data-tour="sidebar">
         <NavSection title="Workspace" items={NAV_MAIN} pathname={pathname} />
-        <NavSection
-          title="Analytics"
-          items={NAV_ANALYTICS}
-          pathname={pathname}
-        />
+        <NavSection title="Reports" items={NAV_REPORTS} pathname={pathname} />
         <NavSection title="" items={NAV_SETTINGS} pathname={pathname} />
         <div className="mt-auto rounded-lg border border-border/60 bg-card p-3 text-xs text-muted-foreground">
           <div className="mb-2 flex items-center gap-2 font-medium text-foreground">

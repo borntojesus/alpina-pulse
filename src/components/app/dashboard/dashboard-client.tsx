@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo } from "react";
 import { usePulseStore } from "@/lib/store";
 import { useHydrated } from "@/lib/use-hydrated";
@@ -24,12 +25,23 @@ export function DashboardClient() {
 
   return (
     <div className="flex flex-col">
-      <PageHeader
-        eyebrow={`${role} view`}
-        title={`Good ${greeting()}, ${role === "Exec" ? "team" : "rep"}.`}
-        description={focus.subtitle}
-        actions={<Badge variant="outline">Live demo data</Badge>}
-      />
+      <div className="relative isolate overflow-hidden border-b border-border/60">
+        <Image
+          src="/marketing/report-banner.png"
+          alt=""
+          aria-hidden
+          fill
+          sizes="100vw"
+          className="pointer-events-none absolute inset-0 -z-10 object-cover opacity-25 [mask-image:linear-gradient(to_bottom,black_10%,transparent_95%)]"
+        />
+        <PageHeader
+          eyebrow={`${role} view`}
+          title={`Good ${greeting()}, ${role === "Exec" ? "team" : "rep"}.`}
+          description={focus.subtitle}
+          actions={<Badge variant="outline">Live demo data</Badge>}
+          className="border-b-0"
+        />
+      </div>
       <div className="px-4 py-6 md:px-8">
         {role === "SDR" && (
           <SdrDashboard leads={leads} deals={deals} reps={reps} />

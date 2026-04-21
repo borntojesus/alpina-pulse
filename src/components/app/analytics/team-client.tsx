@@ -6,7 +6,7 @@ import { formatCurrency, formatPercent, repLeaderboard } from "@/lib/selectors";
 import { PageHeader } from "@/components/app/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { PersonAvatar } from "@/components/app/person-avatar";
 import { Badge } from "@/components/ui/badge";
 import { DashboardSkeleton } from "@/components/app/dashboard/dashboard-skeleton";
 
@@ -93,14 +93,11 @@ export function TeamAnalyticsClient() {
                   aria-hidden
                 />
                 <CardHeader className="flex-row items-center gap-3">
-                  <Avatar className="size-10">
-                    <AvatarFallback className="text-sm">
-                      {row.rep.name
-                        .split(" ")
-                        .map((p) => p[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
+                  <PersonAvatar
+                    name={row.rep.name}
+                    src={row.rep.avatar}
+                    size={40}
+                  />
                   <div className="flex-1">
                     <CardTitle className="flex items-center gap-2 text-base font-medium">
                       {row.rep.name}

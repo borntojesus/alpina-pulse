@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { generateSeed } from "./seed";
 import { calculateScore } from "./scoring";
+import { avatarUrl } from "./utils";
 import type {
   Activity,
   Deal,
@@ -14,7 +15,7 @@ import type {
   Role,
 } from "./types";
 
-const SEED_VERSION = 1;
+const SEED_VERSION = 2;
 
 type State = {
   seedVersion: number;
@@ -111,6 +112,7 @@ export const usePulseStore = create<State & Actions>()(
           createdAt,
           firstName: input.firstName,
           lastName: input.lastName,
+          avatar: avatarUrl(`${input.firstName} ${input.lastName}`, "lead"),
           email: input.email,
           company: input.company,
           companySize: input.companySize,
