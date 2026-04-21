@@ -73,16 +73,16 @@ pnpm lint     # eslint
 
 ## Deployment
 
-Deployed to Vercel at [alpina-pulse.vercel.app](https://alpina-pulse.vercel.app). With the Vercel GitHub app connected to this repository, every push to `main` triggers a production deployment and every pull request gets a preview URL — no manual CLI step required.
+Full step-by-step runbook lives in **[DEPLOY.md](./DEPLOY.md)** — covers CLI deploys, connecting the Vercel GitHub app for auto-deploy-on-push, preview URLs, rollback, smoke-test commands, Deployment Protection, `SEED_VERSION` bumps, and a release checklist.
 
-If you prefer the CLI:
+Shorthand:
 
 ```bash
-vercel --prod
+git push origin main        # auto-deploys once Vercel GitHub app is connected
+vercel deploy --prod --yes  # manual fallback (currently what we use)
 ```
 
-Make sure Deployment Protection is disabled so the public demo is reachable without Vercel authentication:
-`Vercel → Project Settings → Deployment Protection → Vercel Authentication: Disabled`.
+Production: [alpina-pulse.vercel.app](https://alpina-pulse.vercel.app). Deployment Protection must stay disabled for the public demo.
 
 ## Routes
 
