@@ -30,6 +30,9 @@ import { RoleSwitcher } from "@/components/app/role-switcher";
 import { ThemeToggle } from "@/components/app/theme-toggle";
 import { ScreenHelp } from "@/components/app/screen-help";
 import { WelcomeTour } from "@/components/app/welcome-tour";
+import { HudBar } from "@/components/app/hud-bar";
+import { AutoPlayToggle } from "@/components/app/autoplay-demo";
+import { CommandPalette } from "@/components/app/command-palette";
 
 type NavItem = {
   href: string;
@@ -109,6 +112,7 @@ const NAV_SETTINGS: NavItem[] = [
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-svh bg-background text-foreground">
+      <HudBar />
       <TopBar />
       <div className="mx-auto flex w-full max-w-[1500px]">
         <aside className="sticky top-14 hidden h-[calc(100svh-56px)] w-60 shrink-0 border-r border-border/60 bg-sidebar md:block">
@@ -117,6 +121,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <main className="min-w-0 flex-1">{children}</main>
       </div>
       <WelcomeTour />
+      <CommandPalette />
     </div>
   );
 }
@@ -153,6 +158,7 @@ function TopBar() {
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        <AutoPlayToggle />
         <Button
           variant="outline"
           size="sm"

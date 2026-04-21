@@ -12,8 +12,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MarketingHeader } from "@/components/marketing/header";
+import { TestimonialsCarousel } from "@/components/marketing/testimonials-carousel";
+import { ThemeLab } from "@/components/marketing/theme-lab";
 import { Logo } from "@/components/logo";
 import { AlpinaTechMark } from "@/components/alpina-tech-mark";
+import { Reveal } from "@/components/motion/reveal";
 
 export default function LandingPage() {
   return (
@@ -26,6 +29,7 @@ export default function LandingPage() {
         <ProductSection />
         <PersonaSection />
         <HowItWorksSection />
+        <TestimonialsCarousel />
         <CtaSection />
       </main>
 
@@ -43,9 +47,22 @@ export default function LandingPage() {
               <AlpinaTechMark height={18} />
             </a>
           </div>
-          <span>© 2026 — Built for client showcases.</span>
+          <nav className="flex flex-wrap items-center gap-4">
+            <Link href="/about" className="hover:text-foreground">
+              About
+            </Link>
+            <Link href="/showcase" className="hover:text-foreground">
+              Showcase
+            </Link>
+            <Link href="/contact" className="hover:text-foreground">
+              Submit a lead
+            </Link>
+            <span>© 2026 — Built for client showcases.</span>
+          </nav>
         </div>
       </footer>
+
+      <ThemeLab />
     </div>
   );
 }
@@ -75,12 +92,14 @@ function HeroSection() {
           <Sparkles className="size-3 text-accent" />
           Live demo · no sign-up required
         </Badge>
-        <h1 className="text-balance text-center text-4xl font-semibold tracking-tight md:text-6xl">
-          Lead intelligence for{" "}
-          <span className="bg-gradient-to-r from-primary via-primary/90 to-accent bg-clip-text text-transparent">
-            B2B sales teams
-          </span>
-        </h1>
+        <Reveal delay={0.1}>
+          <h1 className="text-balance text-center text-4xl font-semibold tracking-tight md:text-6xl">
+            Lead intelligence for{" "}
+            <span className="bg-gradient-to-r from-primary via-primary/90 to-accent bg-clip-text text-transparent">
+              B2B sales teams
+            </span>
+          </h1>
+        </Reveal>
         <p className="max-w-2xl text-balance text-center text-base leading-relaxed text-muted-foreground md:text-lg">
           See how a B2B lead gets from form to forecast. Alpina CRM shows what
           we build for revenue teams — inbox, scoring, pipeline, and dashboards
@@ -177,21 +196,20 @@ function ProductSection() {
           </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="group relative rounded-xl border border-border/60 bg-card p-6 transition-colors hover:border-primary/40"
-            >
-              <div className="mb-4 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-                <f.icon className="size-4.5" />
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={i * 0.05}>
+              <div className="group relative rounded-xl border border-border/60 bg-card p-6 transition-colors hover:border-primary/40">
+                <div className="mb-4 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                  <f.icon className="size-4.5" />
+                </div>
+                <h3 className="mb-1.5 text-base font-medium tracking-tight">
+                  {f.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {f.description}
+                </p>
               </div>
-              <h3 className="mb-1.5 text-base font-medium tracking-tight">
-                {f.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {f.description}
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -245,30 +263,29 @@ function PersonaSection() {
           </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
-          {personas.map((p) => (
-            <div
-              key={p.role}
-              className="relative overflow-hidden rounded-xl border border-border/60 bg-card p-6"
-            >
-              <div
-                className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${p.accent}`}
-                aria-hidden
-              />
-              <div className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                For the {p.role}
+          {personas.map((p, i) => (
+            <Reveal key={p.role} delay={i * 0.08}>
+              <div className="relative overflow-hidden rounded-xl border border-border/60 bg-card p-6">
+                <div
+                  className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${p.accent}`}
+                  aria-hidden
+                />
+                <div className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  For the {p.role}
+                </div>
+                <h3 className="mb-4 text-xl font-semibold tracking-tight">
+                  {p.focus}
+                </h3>
+                <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+                  {p.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2">
+                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="mb-4 text-xl font-semibold tracking-tight">
-                {p.focus}
-              </h3>
-              <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-                {p.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-2">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -331,23 +348,22 @@ function HowItWorksSection() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            {steps.map((s) => (
-              <div
-                key={s.n}
-                className="flex items-start gap-4 rounded-xl border border-border/60 bg-card p-5"
-              >
-                <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 font-mono text-xs text-primary">
-                  {s.n}
-                </span>
-                <div>
-                  <h3 className="text-base font-medium tracking-tight">
-                    {s.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                    {s.description}
-                  </p>
+            {steps.map((s, i) => (
+              <Reveal key={s.n} delay={i * 0.08}>
+                <div className="flex items-start gap-4 rounded-xl border border-border/60 bg-card p-5">
+                  <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 font-mono text-xs text-primary">
+                    {s.n}
+                  </span>
+                  <div>
+                    <h3 className="text-base font-medium tracking-tight">
+                      {s.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {s.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

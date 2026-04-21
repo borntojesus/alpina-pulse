@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, HelpCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 
 export function ReportShell({
@@ -103,7 +104,8 @@ export function ChartFrame({
   className?: string;
 }) {
   return (
-    <section
+    <Reveal
+      as="section"
       className={cn(
         "flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-5",
         className,
@@ -121,6 +123,6 @@ export function ChartFrame({
         {right}
       </header>
       <div>{children}</div>
-    </section>
+    </Reveal>
   );
 }
